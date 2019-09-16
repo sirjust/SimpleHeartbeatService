@@ -20,8 +20,15 @@ namespace SimpleHeartbeatService
                     s.WhenStopped(heartbeat => heartbeat.Stop());
                 });
 
+                x.RunAsLocalSystem();
 
+                x.SetServiceName("HeartbeatService");
+                x.SetDisplayName("Heartbeat Service");
+                x.SetDescription("This is the sample heartbeat service made by following Tim Corey's demo on YouTube.");
             });
+
+            int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());
+            Environment.ExitCode = exitCodeValue;
         }
     }
 }
